@@ -1,8 +1,8 @@
-all: cleanup proposal
+all: cleanup whitepaper
 	@echo "done"
 
-proposal:
-	pdflatex proposal && bibtex proposal && pdflatex proposal && pdflatex proposal
+whitepaper:
+	pdflatex whitepaper && bibtex whitepaper && pdflatex whitepaper && pdflatex whitepaper
 
 cleanup:
 	@rm -f *.mlf* *.mlt* *.mtc* *.out *.nlo *.aux *.log *.toc *.maf *.lof *.lot *.bbl *.blg *.brf
