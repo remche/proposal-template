@@ -9,7 +9,7 @@
 \def \biline{Proof Of Stake Mining Cryptocurrency}
 \def \author{Your Name}
 \def \email{stakepool@stakepool.co}
-\def \phone{800-555-1212}
+\def \phone{http://stakepool.co}
 \def \address{Ontario, CA}
 
 %%
@@ -38,28 +38,111 @@
 
 \begin{document}
 
+\def\angle{0}
+\def\radius{3}
+\def\cyclelist{{"orange","blue","red","green"}}
+\newcount\cyclecount \cyclecount=-1
+\newcount\ind \ind=-1
+
+
 \whitepapercover
 %\docinfo
 
 % mark pages that have restricted (aka: proprietary information with the "restricted" page style.
-\pagestyle{restricted}
+%\pagestyle{restricted}
 
-\section{Hi mom}
-I reference something here \cite{newsome2005dynamic}.
 
-\subsection{SubSection Title}
-This is a subsection.  I should use an acronymn here \ac{MITM} once, and then again \ac{MITM}.
+\begin{abstract}
+	STAKEPOOL is an ERC-20 Ethereum token representing the right of staking power on the StakePool.co network. StakePool.co uses Proof-Of-Stake(POS) mining along with masternodes to get the highest return on investments. The token will be ailable for purchase at the ICO crowdsale for a period of 60 days. No more than 50,00,000 tokens will be released during round 1. Round 2 will see another 100,000,000 tokens released as more coins move to proof-of-stake, including Ethereum. Round 2 won’t be launched until Ethereum is within 60-90 days of going POS. The remaining tokens will be held back for further tokens switching to POS/masternodes. Round 3 will only launch if needed at a much later date for future masternode coins. If no round 3, remaining tokens will be burned.
+\end{abstract}
 
-\subsubsection{Subsubsection title goes here}
-this is a sub sub section.
+\section{StakePool project}
 
-\paragraph{Paragraph Title}
-This is a paragraph.
+The  StakePool  project  is  a   U.S.  company  (POS  Mining  Co.) based  in  Ontario,  CA  that  stakes  Proof-Of-Stake  coins  and  runs  masternodes  for income  purposes.  Our  green  facility  includes  solar  power  providing  25\%  of  our  electrical needs.  Each  POOL  token  represents  a   percentage  of  profits  and  tokens  generated  from POS  mining  and  will  be  paid  out  monthly  as  Ethereum  back  to  the  wallet  of  all  token holders.  As  with  most  coins,  we  expect  POOL  tokens  to  be  listed  on  several  market exchanges  for  trading  to  allow  participants  to  sell  or  buy  more  POOL  tokens.
 
-\subparagraph{Sub-Paragraph Title}
-This is a subparagraph.
+\textbf{\emph{The ``one-sentence philosophy'' of proof of stake is thus not ``security comes from burning energy'', but rather ``security comes from putting up economic value-at-loss''.}}  \cite{vbuterinposphi}
 
-\cite{frantzen2001stackghost} and \cite{cowan2001formatguard}.  Oh and \cite{ragsdale2000adaptation}.
+ \subsection{Our vision}
+  \subsubsection{History}
+  \subsubsection{Security}
+  \subsubsection{Transparency}
+
+ \subsection{Technical side}
+  \subsubsection{Why POS}
+  \subsubsection{POS Mining}
+  \subsubsection{Masternodes}
+
+\section{Token Release}
+
+\begin{figure}[h]
+\centering
+\caption{Token distribution}
+\begin{tikzpicture}[nodes = {font=\sffamily}]
+	\foreach \percent/\name in {
+		25/ICO Round 1,
+		50/ICO Round 2,
+		12.5/ICO Round 3 (or burned),
+		12.5/Founders (2-year lock)
+	} {
+		  \ifx\percent\empty\else               % If \percent is empty, do nothing
+		  \global\advance\cyclecount by 1     % Advance cyclecount
+		  \global\advance\ind by 1            % Advance list index
+		  \ifnum3<\cyclecount                 % If cyclecount is larger than list
+		  \global\cyclecount=0              %   reset cyclecount and
+		  \global\ind=0                     %   reset list index
+		  \fi
+		  \pgfmathparse{\cyclelist[\the\ind]} % Get color from cycle list
+		  \edef\color{\pgfmathresult}         %   and store as \color
+		    % Draw angle and set labels
+		  \draw[fill={\color!50},draw={\color}] (0,0) -- (\angle:\radius)
+		  arc (\angle:\angle+\percent*3.6:\radius) -- cycle;
+		  \node at (\angle+0.5*\percent*3.6:0.7*\radius) {\percent\,\%};
+		  \node[pin=\angle+0.5*\percent*3.6:\name]
+		  at (\angle+0.5*\percent*3.6:\radius) {};
+		  \pgfmathparse{\angle+\percent*3.6}  % Advance angle
+		  \xdef\angle{\pgfmathresult}         %   and store in \angle
+		  \fi
+	  };
+\end{tikzpicture}
+\end{figure}
+
+\section{Payouts}
+
+\begin{figure}[h]
+\centering
+\caption{Dividends distribution}
+\begin{tikzpicture}[nodes = {font=\sffamily}]
+	\foreach \percent/\name in {
+		65/Token holders,
+		25/New investments,
+		10/Costs coverage,
+	} {
+		  \ifx\percent\empty\else               % If \percent is empty, do nothing
+		  \global\advance\cyclecount by 1     % Advance cyclecount
+		  \global\advance\ind by 1            % Advance list index
+		  \ifnum3<\cyclecount                 % If cyclecount is larger than list
+		  \global\cyclecount=0              %   reset cyclecount and
+		  \global\ind=0                     %   reset list index
+		  \fi
+		  \pgfmathparse{\cyclelist[\the\ind]} % Get color from cycle list
+		  \edef\color{\pgfmathresult}         %   and store as \color
+		    % Draw angle and set labels
+		  \draw[fill={\color!50},draw={\color}] (0,0) -- (\angle:\radius)
+		  arc (\angle:\angle+\percent*3.6:\radius) -- cycle;
+		  \node at (\angle+0.5*\percent*3.6:0.7*\radius) {\percent\,\%};
+		  \node[pin=\angle+0.5*\percent*3.6:\name]
+		  at (\angle+0.5*\percent*3.6:\radius) {};
+		  \pgfmathparse{\angle+\percent*3.6}  % Advance angle
+		  \xdef\angle{\pgfmathresult}         %   and store in \angle
+		  \fi
+	  };
+\end{tikzpicture}
+\end{figure}
+
+\section{Roadmap}
+
+\section{Contact}
+
 
 \bib
 \end{document}
